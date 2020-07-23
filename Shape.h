@@ -7,7 +7,8 @@
 class Shape {
 
 protected:
-    std::size_t numShapes;
+
+    static std::size_t numShapesCreated;
     std::size_t ID;
     std::string name;
     std::string description;
@@ -25,8 +26,10 @@ public:
     virtual double getScreenArea() const = 0;
     virtual double getScreenPerimeter() const = 0;
     virtual void draw() const = 0;
-    virtual void getBoxHeight() const = 0;
-    virtual void getBoxWidth() const = 0;
+    virtual double getBoxHeight() const = 0;
+    virtual double getBoxWidth() const = 0;
+    std::string getStaticType() const;
+    std::string getDynamicType() const;
 };
 
 

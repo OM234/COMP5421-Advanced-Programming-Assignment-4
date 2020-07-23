@@ -1,7 +1,13 @@
 #include "Shape.h"
+#include <typeinfo>
 
 Shape::Shape(std::string name, std::string description) :
-        name{name}, description{description} {};
+        name{name}, description{description} {
+
+    numShapesCreated++;
+};
+
+size_t Shape::numShapesCreated = 0;
 
 std::size_t Shape::getID() const {
     return ID;
@@ -21,4 +27,14 @@ void Shape::setName(std::string name) {
 
 void Shape::setDescription(std::string description) {
     this->description = description;
+}
+
+std::string Shape::getStaticType() const {
+
+    return typeid(this).name();
+}
+
+std::string Shape::getDynamicType() const {
+
+    return typeid(*this).name();
 }

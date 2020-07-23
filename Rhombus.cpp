@@ -2,18 +2,26 @@
 // Created by Oz on 7/23/2020.
 //
 
-#include "Rectangle.h"
-#include <typeinfo>
-#include <iostream>
+#include "Rhombus.h"
+#include <cmath>
 
-Rectangle::Rectangle(std::size_t height, std::size_t width, std::string name,
-                     std::string description ) :
-        Shape(name, description), height{height}, width{width} {
+Rhombus::Rhombus(size_t diameter, std::string name = "Diamond",
+                 std::string description = "Parallelogram with equal sides") :
+        Shape{name, description} {
 
     Shape::ID = Shape::numShapesCreated;
+
+    if (this->diameter % 2 != 0) {
+
+        this->diameter = diameter;
+
+    } else {
+
+        this->diameter = diameter + 1;
+    }
 };
 
-std::string Rectangle::toString() const {
+std::string Rhombus::toString() const {
 
     std::string returnStr{};
 
@@ -34,37 +42,38 @@ std::string Rectangle::toString() const {
     return returnStr;
 }
 
-double Rectangle::getArea() const {
+double Rhombus::getArea() const {
 
-    return height*width;
+    return pow(diameter, 2)/2;
 }
 
-double Rectangle::getPerimeter() const {
+double Rhombus::getPerimeter() const {
 
-    return 2*(height + width);
+    return pow( 2, 0.5 ) * 2 * diameter;
 }
 
-double Rectangle::getScreenArea() const {
+double Rhombus::getScreenArea() const {
 
-    return getArea();
+    double n { floor ( diameter / 2 )};
+
+    return ( 2 * n ) * ( n + 1 ) + 1;
 }
 
-double Rectangle::getScreenPerimeter() const {
+double Rhombus::getScreenPerimeter() const {
 
-    return getPerimeter() - 4;
+    return 2 * ( diameter - 1 );
 }
 
-void Rectangle::draw() const {
-
+void Rhombus::draw() const {
 
 }
 
-double Rectangle::getBoxHeight() const {
+double Rhombus::getBoxHeight() const {
 
-    return height;
+    return diameter;
 }
 
-double Rectangle::getBoxWidth() const {
+double Rhombus::getBoxWidth() const {
 
-    return width;
+    return diameter;
 }

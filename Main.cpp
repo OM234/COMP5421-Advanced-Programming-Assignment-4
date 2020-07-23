@@ -1,6 +1,11 @@
-#include<Shape.h>
-#include<Rectangle.h>
+#include"Shape.h"
+#include"Rhombus.h"
+#include"Rectangle.h"
+#include<iostream>
 
 int main() {
-    Shape *s = new Rectangle("rectangle", "a rectangle", 10, 10);
+    Rectangle s{5, 7};
+    Rhombus b{16, "Ace", "Ace of diamond"};
+
+    std::cout << b.toString();
 }
