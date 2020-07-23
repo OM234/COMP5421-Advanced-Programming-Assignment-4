@@ -8,12 +8,12 @@ class Shape {
 
 protected:
     std::size_t numShapes;
-    std::size_t idNum;
+    std::size_t ID;
     std::string name;
     std::string description;
 
 public:
-    Shape(std::string name, std::string description);
+    Shape(std::string, std::string);
     std::size_t getID() const;
     std::string getName() const;
     std::string getDescription() const;
