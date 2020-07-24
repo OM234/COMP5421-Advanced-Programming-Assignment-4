@@ -3,8 +3,6 @@
 //
 
 #include "Rectangle.h"
-#include <typeinfo>
-#include <iostream>
 
 Rectangle::Rectangle(std::size_t height, std::size_t width, std::string name,
                      std::string description ) :

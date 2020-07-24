@@ -8,7 +8,6 @@ class RightTriangle : public Triangle {
 public:
 
     RightTriangle(std::size_t, std::string = "Ladder", std::string = "One right and two acute angles");
-
     std::string toString() const override;
     double getPerimeter() const override;
     double getScreenArea() const override;

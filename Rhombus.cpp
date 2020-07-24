@@ -3,7 +3,6 @@
 //
 
 #include "Rhombus.h"
-#include <cmath>
 
 Rhombus::Rhombus(size_t diameter, std::string name = "Diamond",
                  std::string description = "Parallelogram with equal sides") :

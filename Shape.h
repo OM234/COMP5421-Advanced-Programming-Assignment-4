@@ -3,6 +3,8 @@
 #define COMP5421_ADVANCED_PROGRAMMING_ASSIGNMENT_4_SHAPE_H
 
 #include <string>
+#include <cmath>
+#include <ostream>
 
 class Shape {
 
@@ -32,6 +34,6 @@ public:
     std::string getDynamicType() const;
 };
 
-
+std::ostream& operator << (std::ostream&, Shape&);
 
 #endif //COMP5421_ADVANCED_PROGRAMMING_ASSIGNMENT_4_SHAPE_H

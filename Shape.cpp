@@ -38,3 +38,9 @@ std::string Shape::getDynamicType() const {
 
     return typeid(*this).name();
 }
+
+std::ostream& operator<< (std::ostream& sout, Shape& shape) {
+
+    sout << shape.toString();
+    return sout;
+}
