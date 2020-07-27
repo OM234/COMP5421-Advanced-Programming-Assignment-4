@@ -4,7 +4,7 @@
 
 #include "Rectangle.h"
 
-Rectangle::Rectangle(std::size_t height, std::size_t width, std::string name,
+Rectangle::Rectangle(std::size_t width, std::size_t height, std::string name,
                      std::string description ) :
         Shape(name, description), height{height}, width{width} {
 
@@ -52,9 +52,33 @@ double Rectangle::getScreenPerimeter() const {
     return getPerimeter() - 4;
 }
 
-void Rectangle::draw() const {
+void Rectangle::draw(char fchar = '*', char bChar = ' ') const {
 
+    std::vector<std::vector<char>> grid;
 
+    for( int i = 0 ; i < height ; i++ ) {
+
+        std::vector<char> row;
+
+        for( int j = 0 ; j < width ; j++ ) {
+
+            row.push_back(fchar);
+            //std::cout << fchar;
+        }
+
+        grid.push_back(row);
+        //std::cout << std::endl;
+    }
+
+//    for( int i = 0 ; i < grid.size() ; i++ ) {
+//
+//        for( int j = 0; j < grid[i].size() ; j++ ) {
+//
+//            std::cout << grid[i][j];
+//        }
+//
+//        std::cout << std::endl;
+//    }
 }
 
 double Rectangle::getBoxHeight() const {

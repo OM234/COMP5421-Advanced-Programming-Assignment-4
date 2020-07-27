@@ -63,7 +63,7 @@ double Rhombus::getScreenPerimeter() const {
     return 2 * ( diameter - 1 );
 }
 
-void Rhombus::draw() const {
+void Rhombus::draw(char fchar = '*', char bChar = ' ') const {
 
 }
 

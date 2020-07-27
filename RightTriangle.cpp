@@ -44,6 +44,38 @@ double RightTriangle::getScreenPerimeter() const {
     return 3 * (height - 1);
 }
 
-void RightTriangle::draw() const {
+void RightTriangle::draw(char fchar = '*', char bChar = ' ') const {
+
+    std::vector<std::vector<char>> grid(height);
+
+    for( int i = 0 ; i < height ; i++) {
+
+        std::vector<char> row(base);
+
+        for( int j = 0 ; j < base ; j++ ) {
+
+            if( j > i ) {
+
+                row[j] = bChar;
+
+            } else {
+
+                row[j] = fchar;
+
+            }
+        }
+
+        grid[i] = row;
+    }
+
+    for( int i = 0 ; i < grid.size() ; i++ ) {
+
+        for( int j = 0 ; j < grid[i].size() ; j++ ) {
+
+            std::cout << grid[i][j];
+        }
+
+        std::cout << std::endl;
+    }
 
 }
