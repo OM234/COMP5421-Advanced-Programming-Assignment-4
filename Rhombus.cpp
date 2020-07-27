@@ -1,7 +1,3 @@
-//
-// Created by Oz on 7/23/2020.
-//
-
 #include "Rhombus.h"
 
 Rhombus::Rhombus(size_t diameter, std::string name = "Diamond",
@@ -10,7 +6,7 @@ Rhombus::Rhombus(size_t diameter, std::string name = "Diamond",
 
     Shape::ID = Shape::numShapesCreated;
 
-    if (this->diameter % 2 != 0) {
+    if (diameter % 2 != 0) {
 
         this->diameter = diameter;
 
@@ -63,8 +59,40 @@ double Rhombus::getScreenPerimeter() const {
     return 2 * ( diameter - 1 );
 }
 
-void Rhombus::draw(char fchar = '*', char bChar = ' ') const {
+Grid Rhombus::draw(char fchar = '*', char bChar = ' ') const {
 
+    Grid grid(diameter);
+
+    for( int i = 0 ; i < diameter ; i++ ) {
+
+        std::vector<char> row(diameter);
+        std::size_t mid { diameter / 2 };
+
+        for( int j = 0 ; j < diameter ; j++ ) {
+
+            std::size_t distFromMid{ static_cast<size_t>(abs( i - mid ))};
+            std::size_t offset{distFromMid};
+
+            if( j < offset ||  j > diameter - 1 - offset  ) {
+                row[j] = bChar;
+            } else {
+                row[j] = fchar;
+            }
+
+        }
+        grid[i] = row;
+    }
+
+    return grid;
+//    for( int i = 0 ; i < grid.size() ; i++ ) {
+//
+//        for( int j = 0 ; j < grid[i].size() ; j++ ) {
+//
+//            std::cout << grid[i][j];
+//        }
+//
+//        std::cout << std::endl;
+//    }
 }
 
 double Rhombus::getBoxHeight() const {

@@ -52,9 +52,9 @@ double Rectangle::getScreenPerimeter() const {
     return getPerimeter() - 4;
 }
 
-void Rectangle::draw(char fchar = '*', char bChar = ' ') const {
+Grid Rectangle::draw(char fchar = '*', char bChar = ' ') const {
 
-    std::vector<std::vector<char>> grid;
+    Grid grid;
 
     for( int i = 0 ; i < height ; i++ ) {
 
