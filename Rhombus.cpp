@@ -66,7 +66,7 @@ Grid Rhombus::draw(char fChar, char bChar) const {
     for( int i = 0 ; i < diameter ; i++ ) {
 
         std::vector<char> row(diameter);
-        std::size_t mid { diameter / 2 };
+        int mid { diameter / 2 };
 
         for( int j = 0 ; j < diameter ; j++ ) {
 
@@ -103,4 +103,20 @@ double Rhombus::getBoxHeight() const {
 double Rhombus::getBoxWidth() const {
 
     return diameter;
+}
+
+void Rhombus::drawRow(int row) const {
+
+    if( row >= diameter ) {
+
+        std::cout << std::string(diameter, ' ');
+        return;
+    }
+
+    Grid grid = draw();
+
+    for( int i = 0 ; i < diameter ; i++ ) {
+
+        std::cout << grid[row][i];
+    }
 }

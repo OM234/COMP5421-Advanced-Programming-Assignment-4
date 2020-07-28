@@ -6,7 +6,6 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-#include "Shape.h"
 #include "Rhombus.h"
 #include "AcuteTriangle.h"
 #include "RightTriangle.h"
@@ -48,7 +47,7 @@ int SlotMachine::displayGreeting() {
         tokens = 10;
     }
 
-    std::string greeting = "\nWelcome to 3—Ree1 Lucky Slot Machine Game ! \n"
+    std::string greeting = "\nWelcome to 3—Reel Lucky Slot Machine Game ! \n"
                            "Each reel will randomly display one of four shapes, each with 25 sizes. \n"
                            "To win 3 x bet, get 2 similar shapes AND 2 shapes with equal Scr Areas. \n"
                            "To win 2 x bet, get 3 similar shapes. \n"
@@ -70,6 +69,8 @@ int SlotMachine::getBet(int tokens) {
         std::cout << "How much would you like to bet (enter 0 to quit)? ";
         std::cin >> bet;
     }
+
+    return bet;
 }
 
 void SlotMachine::exitMessage(int tokens) {
@@ -78,26 +79,53 @@ void SlotMachine::exitMessage(int tokens) {
 
 void SlotMachine::printReel() {
 
-    std::size_t borderHeight = getBorderHeight();
+    int maxShapeHeight = getMaxShapeHeight();
 
-    std::cout << borderHeight << std::endl;
+    printTopBottomBorder();
+    printInBetweenRow(maxShapeHeight);
+    printTopBottomBorder();
 }
 
-std::size_t SlotMachine::getBorderHeight() {
+void SlotMachine::printInBetweenRow(int maxShapeHeight) const {
 
-    std::size_t maxHeight{};
+    for(int row{0} ; row < maxShapeHeight ; row++ ){
+
+        std::cout << "| ";
+        reel[0]->drawRow(row);
+        std::cout << " | ";
+        reel[1]->drawRow(row);
+        std::cout << " | ";
+        reel[2]->drawRow(row);
+        std::cout << " |" << std::endl;
+    }
+}
+
+void SlotMachine::printTopBottomBorder() const {
+
+    std::cout << '+';
+    std::cout << std::string(reel[0]->getBoxWidth() + 2, '-');
+    std::cout << '+';
+    std::cout << std::string(reel[1]->getBoxWidth() + 2, '-');
+    std::cout << '+';
+    std::cout << std::string(reel[2]->getBoxWidth() + 2, '-');
+    std::cout << '+' << std::endl;
+}
+
+std::size_t SlotMachine::getMaxShapeHeight() {
+
+    int maxHeight{};
 
     for( int k = 0 ; k < 3 ; k++ ) {
 
-        Grid grid = reel[k]->draw();
-        std::cout << grid << std::endl;
         maxHeight = std::max<size_t>(maxHeight, reel[k]->getBoxHeight());
     }
 
-    return maxHeight + 2;
+    return maxHeight;
 }
 
 void SlotMachine::make_shapes() {
+
+    srand(time(NULL));
 
     for( int k = 0 ; k < 3 ; k++ ) {
 
@@ -108,8 +136,6 @@ void SlotMachine::make_shapes() {
 void SlotMachine::make_shape(int k) {
 
     size_t n, width, height;
-
-    srand(time(NULL));
 
     n = rand() % 3 + 1;
     width = rand() % 25 + 1;

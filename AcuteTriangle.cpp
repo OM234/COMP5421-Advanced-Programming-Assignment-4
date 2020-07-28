@@ -52,7 +52,7 @@ double AcuteTriangle::getScreenPerimeter() const {
     return 4 * (height - 1);
 }
 
-Grid AcuteTriangle::draw(char fchar = '*', char bChar = ' ') const {
+Grid AcuteTriangle::draw(char fchar, char bChar) const {
 
     Grid grid(height);
 
@@ -87,4 +87,20 @@ Grid AcuteTriangle::draw(char fchar = '*', char bChar = ' ') const {
 //
 //        std::cout << std::endl;
 //    }
+}
+
+void AcuteTriangle::drawRow(int row) const {
+
+    if( row >= height ) {
+
+        std::cout << std::string(base, ' ');
+        return;
+    }
+
+    Grid grid = draw();
+
+    for( int i = 0 ; i < base ; i++ ) {
+
+        std::cout << grid[row][i];
+    }
 }

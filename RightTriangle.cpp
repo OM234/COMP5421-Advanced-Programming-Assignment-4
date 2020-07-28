@@ -80,3 +80,19 @@ Grid RightTriangle::draw(char fChar, char bChar) const {
 //    }
 
 }
+
+void RightTriangle::drawRow(int row) const {
+
+    if( row >= height ) {
+
+        std::cout << std::string(base, ' ');
+        return;
+    }
+
+    Grid grid = draw();
+
+    for( int i = 0 ; i < base ; i++ ) {
+
+        std::cout << grid[row][i];
+    }
+}

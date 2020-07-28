@@ -16,7 +16,8 @@ public:
     double getPerimeter() const override;
     double getScreenArea() const override;
     double getScreenPerimeter() const override;
-    Grid draw(char, char) const override;
+    Grid draw(char = '*', char = ' ') const override;
+    void drawRow(int) const override;
 };
 
 

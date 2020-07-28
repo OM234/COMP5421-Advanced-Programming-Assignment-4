@@ -92,3 +92,19 @@ double Rectangle::getBoxWidth() const {
 
     return width;
 }
+
+void Rectangle::drawRow(int row) const {
+
+    if( row >= height ) {
+
+        std::cout << std::string(width, ' ');
+        return;
+    }
+
+    Grid grid = draw();
+
+    for( int i = 0 ; i < width ; i++ ) {
+
+        std::cout << grid[row][i];
+    }
+}

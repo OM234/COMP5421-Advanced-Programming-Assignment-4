@@ -17,7 +17,7 @@ private:
     void make_shape(int);
     void display();
     void printReel();
-    std::size_t  getBorderHeight();
+    std::size_t  getMaxShapeHeight();
     int displayGreeting();
     int getBet(int);
     void exitMessage(int);
@@ -31,6 +31,10 @@ public:
     SlotMachine& operator = (SlotMachine&&) = delete;
     virtual ~SlotMachine() = default;
     void run();
+
+    void printTopBottomBorder() const;
+
+    void printInBetweenRow(int maxShapeHeight) const;
 };
 
 
