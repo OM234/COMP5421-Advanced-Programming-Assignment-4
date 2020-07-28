@@ -4,10 +4,13 @@
 #include"Triangle.h"
 #include"RightTriangle.h"
 #include"AcuteTriangle.h"
+#include"SlotMachine.h"
 #include<iostream>
 #include<memory>
 
 int main() {
+
+    /* Task 1
 
     Rectangle rect {5,7};
     std::cout << rect << std::endl;
@@ -36,4 +39,15 @@ int main() {
     std::unique_ptr<Shape> rtShape {new RightTriangle{10, "Carpenter's Square"} };
     Grid rtBox = rtShape->draw('+', '.');
     std::cout << rtBox << std::endl;
+
+     End of Task 1*/
+
+    /*Task 2 */
+
+    SlotMachine slotMachine;
+
+    slotMachine.run();
+
+
+     /*End of Task 2*/
 }

@@ -1,7 +1,7 @@
 #include "Rhombus.h"
 
-Rhombus::Rhombus(size_t diameter, std::string name = "Diamond",
-                 std::string description = "Parallelogram with equal sides") :
+Rhombus::Rhombus(size_t diameter, std::string name,
+                 std::string description) :
         Shape{name, description} {
 
     Shape::ID = Shape::numShapesCreated;
