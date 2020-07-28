@@ -31,7 +31,7 @@ public:
     virtual double getPerimeter() const = 0;
     virtual double getScreenArea() const = 0;
     virtual double getScreenPerimeter() const = 0;
-    virtual Grid draw(char, char) const = 0;
+    virtual Grid draw(char = '*', char = ' ') const = 0;
     virtual double getBoxHeight() const = 0;
     virtual double getBoxWidth() const = 0;
     std::string getStaticType() const;
@@ -39,5 +39,6 @@ public:
 };
 
 std::ostream& operator << (std::ostream&, Shape&);
+std::ostream& operator << (std::ostream&, Grid&);
 
 #endif //COMP5421_ADVANCED_PROGRAMMING_ASSIGNMENT_4_SHAPE_H

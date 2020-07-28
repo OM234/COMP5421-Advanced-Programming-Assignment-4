@@ -39,8 +39,23 @@ std::string Shape::getDynamicType() const {
     return typeid(*this).name();
 }
 
-std::ostream& operator<< (std::ostream& sout, Shape& shape) {
+std::ostream& operator << (std::ostream& sout, Shape& shape) {
 
     sout << shape.toString();
+    return sout;
+}
+
+std::ostream& operator << (std::ostream& sout, Grid& grid) {
+
+    for( int i = 0 ; i < grid.size() ; i++ ) {
+
+        for( int j = 0 ; j < grid[i].size() ; j++) {
+
+            sout << grid[i][j];
+        }
+
+        sout << std::endl;
+    }
+
     return sout;
 }

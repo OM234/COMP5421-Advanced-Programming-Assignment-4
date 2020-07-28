@@ -59,7 +59,7 @@ double Rhombus::getScreenPerimeter() const {
     return 2 * ( diameter - 1 );
 }
 
-Grid Rhombus::draw(char fchar = '*', char bChar = ' ') const {
+Grid Rhombus::draw(char fChar, char bChar) const {
 
     Grid grid(diameter);
 
@@ -76,7 +76,7 @@ Grid Rhombus::draw(char fchar = '*', char bChar = ' ') const {
             if( j < offset ||  j > diameter - 1 - offset  ) {
                 row[j] = bChar;
             } else {
-                row[j] = fchar;
+                row[j] = fChar;
             }
 
         }

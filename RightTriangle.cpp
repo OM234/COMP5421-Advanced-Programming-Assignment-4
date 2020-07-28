@@ -44,7 +44,7 @@ double RightTriangle::getScreenPerimeter() const {
     return 3 * (height - 1);
 }
 
-Grid RightTriangle::draw(char fchar = '*', char bChar = ' ') const {
+Grid RightTriangle::draw(char fChar, char bChar) const {
 
     Grid grid(height);
 
@@ -60,7 +60,7 @@ Grid RightTriangle::draw(char fchar = '*', char bChar = ' ') const {
 
             } else {
 
-                row[j] = fchar;
+                row[j] = fChar;
 
             }
         }
@@ -68,14 +68,15 @@ Grid RightTriangle::draw(char fchar = '*', char bChar = ' ') const {
         grid[i] = row;
     }
 
-    for( int i = 0 ; i < grid.size() ; i++ ) {
-
-        for( int j = 0 ; j < grid[i].size() ; j++ ) {
-
-            std::cout << grid[i][j];
-        }
-
-        std::cout << std::endl;
-    }
+    return grid;
+//    for( int i = 0 ; i < grid.size() ; i++ ) {
+//
+//        for( int j = 0 ; j < grid[i].size() ; j++ ) {
+//
+//            std::cout << grid[i][j];
+//        }
+//
+//        std::cout << std::endl;
+//    }
 
 }
