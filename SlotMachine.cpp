@@ -6,6 +6,7 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <algorithm>
 #include "Rhombus.h"
 #include "AcuteTriangle.h"
 #include "RightTriangle.h"
@@ -13,12 +14,13 @@
 
 void SlotMachine::run() {
 
-    int tokens{displayGreeting()};
-    int bet{getBet(tokens)};
+    displayGreeting();
+
+    int bet{getBet()};
 
     if(bet == 0) {
 
-        exitMessage(tokens);
+        exitMessage();
 
     } else {
 
@@ -26,11 +28,13 @@ void SlotMachine::run() {
     }
 
     printReel();
+    printBottomShapeTypes();
+    displayWinnings();
 }
 
-int SlotMachine::displayGreeting() {
+void SlotMachine::displayGreeting() {
 
-    int tokens{};
+//    int tokens{};
     std::string yesOrNo;
 
     std::cout << "Would you like to set the number of starting tokens? Default is 10 (y/n)? ";
@@ -58,14 +62,14 @@ int SlotMachine::displayGreeting() {
 
     std::cout << greeting << std::endl;
 
-    return tokens;
 }
 
-int SlotMachine::getBet(int tokens) {
+int SlotMachine::getBet() {
 
     int bet{-1};
 
     while( bet < 0 || bet > tokens) {
+
         std::cout << "How much would you like to bet (enter 0 to quit)? ";
         std::cin >> bet;
     }
@@ -73,20 +77,20 @@ int SlotMachine::getBet(int tokens) {
     return bet;
 }
 
-void SlotMachine::exitMessage(int tokens) {
+void SlotMachine::exitMessage() {
 
 }
 
-void SlotMachine::printReel() {
+void SlotMachine::printReel() const {
+
+    printTopBottomBorder();
+    printInBetweenRow();
+    printTopBottomBorder();
+}
+
+void SlotMachine::printInBetweenRow() const {
 
     int maxShapeHeight = getMaxShapeHeight();
-
-    printTopBottomBorder();
-    printInBetweenRow(maxShapeHeight);
-    printTopBottomBorder();
-}
-
-void SlotMachine::printInBetweenRow(int maxShapeHeight) const {
 
     for(int row{0} ; row < maxShapeHeight ; row++ ){
 
@@ -111,7 +115,7 @@ void SlotMachine::printTopBottomBorder() const {
     std::cout << '+' << std::endl;
 }
 
-std::size_t SlotMachine::getMaxShapeHeight() {
+std::size_t SlotMachine::getMaxShapeHeight() const{
 
     int maxHeight{};
 
@@ -157,4 +161,73 @@ void SlotMachine::make_shape(int k) {
             break;
     }
 
+}
+
+void SlotMachine::printBottomShapeTypes() const {
+
+    for( int k = 0 ; k < 3 ; k++) {
+
+        std::cout << "(";
+        std::cout << reel[k]->getName();
+        std::cout << ", ";
+        std::cout << reel[k]->getBoxHeight();
+        std::cout << ", ";
+        std::cout << reel[k]->getBoxWidth();
+        std::cout << ") ";
+    }
+}
+
+void SlotMachine::displayWinnings() {
+
+    if(check3xBet()) {
+
+    }
+}
+
+bool SlotMachine::check3xBet() {
+
+    bool twoSimilarShapes{false};
+    bool twoSimilarAreas{false};
+
+    std::array<std::string , 3> shapeTypes{};
+    std::array<double , 3> shapeAreas{};
+
+    for( int k = 0 ; k < 3 ; k++) {
+
+        std::string type = reel[k]->getName();
+        double area = reel[k]->getArea();
+
+        if(std::find(shapeTypes.begin(), shapeTypes.end(), type) != shapeTypes.end()) {
+            twoSimilarShapes = true;
+        } else {
+            shapeTypes[k] = type;
+        }
+
+        if(std::find(shapeAreas.begin(), shapeAreas.end(), area) != shapeAreas.end()) {
+            twoSimilarAreas = true;
+        } else {
+            shapeAreas[k] = area;
+        }
+    }
+
+    if(twoSimilarShapes && twoSimilarAreas) {
+
+        return true;
+
+    } else {
+
+        return false;
+    }
+}
+
+bool SlotMachine::check2xBet() {
+    return false;
+}
+
+bool SlotMachine::check1xBet() {
+    return false;
+}
+
+bool SlotMachine::check0xBet() {
+    return false;
 }
