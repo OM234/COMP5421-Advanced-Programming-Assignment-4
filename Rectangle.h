@@ -1,6 +1,9 @@
-//
-// Created by Oz on 7/23/2020.
-//
+/*
+    Author:     Osman Momoh
+    Student ID: 26220150
+    Course:     COMP 5421: Advanced Programming
+    Date:       7/29/2020, Summer 2020
+*/
 
 #ifndef COMP5421_ADVANCED_PROGRAMMING_ASSIGNMENT_4_RECTANGLE_H
 #define COMP5421_ADVANCED_PROGRAMMING_ASSIGNMENT_4_RECTANGLE_H
@@ -11,12 +14,12 @@ class Rectangle : public Shape {
 
 private:
 
-    std::size_t height;
-    std::size_t width;
+    int height;
+    int width;
 
 public:
 
-    Rectangle(std::size_t, std::size_t, std::string = "Rectangle", std::string = "Four right angles");
+    Rectangle(int, int, std::string = "Rectangle", std::string = "Four right angles");      //constructor, parameters: width, height, name, description
     std::string toString() const override;
     double getArea() const override;
     double getPerimeter() const override;

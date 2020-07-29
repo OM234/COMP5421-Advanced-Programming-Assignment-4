@@ -1,6 +1,9 @@
-//
-// Created by Oz on 7/23/2020.
-//
+/*
+    Author:     Osman Momoh
+    Student ID: 26220150
+    Course:     COMP 5421: Advanced Programming
+    Date:       7/29/2020, Summer 2020
+*/
 
 #include "RightTriangle.h"
 
@@ -14,13 +17,13 @@ std::string RightTriangle::toString() const {
 
     returnStr += "Shape Information\n";
     returnStr += "-----------------\n";
-    returnStr += "id:\t\t\t\t" + std::to_string(ID) + "\n";
-    returnStr += "Shape name:\t\t" + getName() + "\n";
+    returnStr += "id:\t\t" + std::to_string(ID) + "\n";
+    returnStr += "Shape name:\t" + getName() + "\n";
     returnStr += "Description:\t" + getDescription() + "\n";
     returnStr += "B. box width:\t" + std::to_string(getBoxWidth()) + "\n";
     returnStr += "B. box height:\t" + std::to_string(getBoxHeight()) + "\n";
-    returnStr += "Scr area:\t\t" + std::to_string(getScreenArea()) + "\n";
-    returnStr += "Geo area:\t\t" + std::to_string(getArea()) + "\n";
+    returnStr += "Scr area:\t" + std::to_string(getScreenArea()) + "\n";
+    returnStr += "Geo area:\t" + std::to_string(getArea()) + "\n";
     returnStr += "Scr perimeter:\t" + std::to_string(getScreenPerimeter()) + "\n";
     returnStr += "Geo perimeter:\t" + std::to_string(getPerimeter()) + "\n";
     returnStr += "Static type:\t" + getStaticType() + "\n";
@@ -44,17 +47,17 @@ double RightTriangle::getScreenPerimeter() const {
     return 3 * (height - 1);
 }
 
-Grid RightTriangle::draw(char fChar, char bChar) const {
+Grid RightTriangle::draw(char fChar, char bChar) const {    
 
-    Grid grid(height);
+    Grid grid(height);                                      //grid has height number of rows
 
-    for( int i = 0 ; i < height ; i++) {
+    for( int i = 0 ; i < height ; i++) {                    //iterate through rows
 
-        std::vector<char> row(base);
+        std::vector<char> row(base);                        //row is a vector of characters of base size
 
         for( int j = 0 ; j < base ; j++ ) {
 
-            if( j > i ) {
+            if( j > i ) {                                   //if index in background
 
                 row[j] = bChar;
 
@@ -65,23 +68,13 @@ Grid RightTriangle::draw(char fChar, char bChar) const {
             }
         }
 
-        grid[i] = row;
+        grid[i] = row;                                      //appropriate row of grid is set s
     }
 
     return grid;
-//    for( int i = 0 ; i < grid.size() ; i++ ) {
-//
-//        for( int j = 0 ; j < grid[i].size() ; j++ ) {
-//
-//            std::cout << grid[i][j];
-//        }
-//
-//        std::cout << std::endl;
-//    }
-
 }
 
-void RightTriangle::drawRow(int row) const {
+void RightTriangle::drawRow(int row) const {    //see description in AcuteTriangle.cppp
 
     if( row >= height ) {
 

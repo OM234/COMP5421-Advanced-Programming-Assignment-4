@@ -1,10 +1,13 @@
-//
-// Created by Oz on 7/23/2020.
-//
+/*
+    Author:     Osman Momoh
+    Student ID: 26220150
+    Course:     COMP 5421: Advanced Programming
+    Date:       7/29/2020, Summer 2020
+*/
 
 #include "Rectangle.h"
 
-Rectangle::Rectangle(std::size_t width, std::size_t height, std::string name,
+Rectangle::Rectangle(int width, int height, std::string name,
                      std::string description ) :
         Shape(name, description), height{height}, width{width} {
 
@@ -17,13 +20,13 @@ std::string Rectangle::toString() const {
 
     returnStr += "Shape Information\n";
     returnStr += "-----------------\n";
-    returnStr += "id:\t\t\t\t" + std::to_string(ID) + "\n";
-    returnStr += "Shape name:\t\t" + getName() + "\n";
+    returnStr += "id:\t\t" + std::to_string(ID) + "\n";
+    returnStr += "Shape name:\t" + getName() + "\n";
     returnStr += "Description:\t" + getDescription() + "\n";
     returnStr += "B. box width:\t" + std::to_string(getBoxWidth()) + "\n";
     returnStr += "B. box height:\t" + std::to_string(getBoxHeight()) + "\n";
-    returnStr += "Scr area:\t\t" + std::to_string(getScreenArea()) + "\n";
-    returnStr += "Geo area:\t\t" + std::to_string(getArea()) + "\n";
+    returnStr += "Scr area:\t" + std::to_string(getScreenArea()) + "\n";
+    returnStr += "Geo area:\t" + std::to_string(getArea()) + "\n";
     returnStr += "Scr perimeter:\t" + std::to_string(getScreenPerimeter()) + "\n";
     returnStr += "Geo perimeter:\t" + std::to_string(getPerimeter()) + "\n";
     returnStr += "Static type:\t" + getStaticType() + "\n";
@@ -56,31 +59,19 @@ Grid Rectangle::draw(char fChar, char bChar) const {
 
     Grid grid;
 
-    for( int i = 0 ; i < height ; i++ ) {
+    for( int i = 0 ; i < height ; i++ ) {           //height # of rows in grid
 
-        std::vector<char> row;
+        std::vector<char> row;                      //row is a vector of characters
 
-        for( int j = 0 ; j < width ; j++ ) {
+        for( int j = 0 ; j < width ; j++ ) {        //loop through all the elements of the row
 
-            row.push_back(fChar);
-            //std::cout << fChar;
+            row.push_back(fChar);                   //push back fChar in row
         }
 
-        grid.push_back(row);
-        //std::cout << std::endl;
+        grid.push_back(row);                        //push back row into grid
     }
 
     return grid;
-
-//    for( int i = 0 ; i < grid.size() ; i++ ) {
-//
-//        for( int j = 0; j < grid[i].size() ; j++ ) {
-//
-//            std::cout << grid[i][j];
-//        }
-//
-//        std::cout << std::endl;
-//    }
 }
 
 double Rectangle::getBoxHeight() const {
@@ -93,7 +84,7 @@ double Rectangle::getBoxWidth() const {
     return width;
 }
 
-void Rectangle::drawRow(int row) const {
+void Rectangle::drawRow(int row) const {            //see description in AcuteTriangle.cpp
 
     if( row >= height ) {
 
