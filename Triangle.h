@@ -7,11 +7,11 @@
 class Triangle : public Shape {
 
 protected:
-    std::size_t base;
-    std::size_t height;
+    double base;
+    double height;
 
 public:
-    Triangle(std::size_t, std::size_t, std::string, std::string);
+    Triangle(double, double, std::string, std::string);
     double getArea() const override;
     double getBoxHeight() const override;
     double getBoxWidth() const override;

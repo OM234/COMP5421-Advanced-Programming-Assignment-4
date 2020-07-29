@@ -5,7 +5,7 @@
 #include "RightTriangle.h"
 
 
-RightTriangle::RightTriangle(std::size_t base, std::string name, std::string description) :
+RightTriangle::RightTriangle(double base, std::string name, std::string description) :
         Triangle{base, base, name, description} {};
 
 std::string RightTriangle::toString() const {

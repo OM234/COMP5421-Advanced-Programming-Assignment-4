@@ -16,20 +16,30 @@ void SlotMachine::run() {
 
     displayGreeting();
 
-    int bet{getBet()};
+    int bet{};
 
-    if(bet == 0) {
+    while(tokens != 0) {
 
-        exitMessage();
+        bet = getBet();
 
-    } else {
+        if (bet == 0) {
 
-        make_shapes();
+            exitMessage();
+            break;
+
+        } else {
+
+            make_shapes();
+            printReel();
+            printBottomShapeTypes();
+            displayWinnings(bet);
+        }
     }
 
-    printReel();
-    printBottomShapeTypes();
-    displayWinnings();
+    if(tokens == 0) {
+
+        exitMessage();
+    }
 }
 
 void SlotMachine::displayGreeting() {
@@ -79,6 +89,17 @@ int SlotMachine::getBet() {
 
 void SlotMachine::exitMessage() {
 
+    if(tokens == 0) {
+
+        std::cout << "\nYou just ran out of tokens. Better luck next time!\n"
+                     "Game over." << std::endl;
+    } else {
+
+        std::cout << "\nThank you for playing, come back soon!\n"
+                     "Be sure to cash in your remaining " + std::to_string(tokens) +
+                     " tokens at the bar!\n"
+                     "Game Over." << std::endl;
+    }
 }
 
 void SlotMachine::printReel() const {
@@ -145,6 +166,68 @@ void SlotMachine::make_shape(int k) {
     width = rand() % 25 + 1;
     height = rand() % 25 + 1;
 
+//    3x winning
+//    if(k == 0) {
+//
+//        n = 2;
+//        width = 2;
+//    }
+//
+//    if(k == 1) {
+//
+//        n = 2;
+//        width = 10;
+//    }
+//
+//    if(k == 2) {
+//        n = 3;
+//        width = 10;
+//        height = 5;
+//    }
+
+//    2x winning
+//    if (k == 0) {
+//
+//        n = 2;
+//    }
+//
+//    if (k == 1) {
+//
+//        n = 2;
+//    }
+//
+//    if (k == 2) {
+//
+//        n = 3;
+//    }
+
+//    1x winning
+//    if (k == 0) {
+//
+//        width = 3;
+//    }
+//
+//    if (k == 1) {
+//
+//       width = 25;
+//    }
+//
+//    if (k == 2) {
+//
+//        width = 25;
+//    }
+
+//    0x winning
+//    if (k == 0) {
+//
+//        n = 3;
+//    }
+//
+//    if (k == 2) {
+//
+//        n = 3;
+//    }
+
     switch(n) {
 
         case 0:
@@ -154,7 +237,7 @@ void SlotMachine::make_shape(int k) {
             reel[k].reset(new AcuteTriangle{width});
             break;
         case 2:
-            reel[k].reset(new RightTriangle{width});
+            reel[k].reset(new RightTriangle{static_cast<double>(width)});
             break;
         case 3:
             reel[k].reset(new Rectangle{width, height});
@@ -175,13 +258,62 @@ void SlotMachine::printBottomShapeTypes() const {
         std::cout << reel[k]->getBoxWidth();
         std::cout << ") ";
     }
+
+    std::cout << std::endl;
 }
 
-void SlotMachine::displayWinnings() {
+void SlotMachine::displayWinnings(int bet) {
 
     if(check3xBet()) {
 
+        std::string winning {std::to_string(bet * 3)};
+        tokens += bet * 3;
+
+        std::cout << "Jackpot! 2 Similar Shapes AND 2 Equal Screen Areas\n"
+                     "Congratulations! You win 3 times your bet: " + winning + "\n" +
+                     "You now have " + std::to_string(tokens) + " tokens" << std::endl;
+
+        return;
     }
+
+    if(check2xBet()) {
+
+        std::string winning {std::to_string(bet * 2)};
+        tokens += bet * 2;
+
+        std::cout << "Three similar shapes\n"
+                     "Congratulations! You win 2 times your bet: " + winning + "\n" +
+                     "You now have " + std::to_string(tokens) + " tokens" << std::endl;
+
+        return;
+    }
+
+    if(check1xBet()) {
+
+        std::string winning {std::to_string(bet)};
+        tokens += bet;
+
+        std::cout << "Middle > Left + Right, in Screen Areas\n"
+                     "Congratulations! You win your bet: " + winning + "\n" +
+                     "You now have " + std::to_string(tokens) + " tokens" << std::endl;
+
+        return;
+    }
+
+    if(check0xBet()) {
+
+        std::cout << "Lucky this time!\n"
+                     "You don't win, you don't lose, you are safe! \n"
+                     "You now have " + std::to_string(tokens) + " tokens" << std::endl;
+
+        return;
+    }
+
+    tokens = tokens - bet;
+    std::cout << "Oh No!\n"
+                 "You lost your bet\n"
+                 "You now have " + std::to_string(tokens) + " tokens" << std::endl;
+
 }
 
 bool SlotMachine::check3xBet() {
@@ -210,24 +342,23 @@ bool SlotMachine::check3xBet() {
         }
     }
 
-    if(twoSimilarShapes && twoSimilarAreas) {
-
-        return true;
-
-    } else {
-
-        return false;
-    }
+    return twoSimilarShapes && twoSimilarAreas;
 }
 
 bool SlotMachine::check2xBet() {
-    return false;
+
+    return (reel[0]->getName() == reel[1]->getName()) &&
+           (reel[0]->getName() == reel[2]->getName());
 }
 
 bool SlotMachine::check1xBet() {
-    return false;
+
+    return (reel[1]->getScreenArea() >
+           (reel[0]->getScreenArea() + reel[2]->getScreenArea()));
 }
 
 bool SlotMachine::check0xBet() {
-    return false;
+
+    return (reel[0]->getName() == reel[2]->getName());
 }
+

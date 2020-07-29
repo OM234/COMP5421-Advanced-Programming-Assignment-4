@@ -4,7 +4,7 @@
 
 #include "Triangle.h"
 
-Triangle::Triangle(std::size_t base, std::size_t height, std::string name, std::string description) :
+Triangle::Triangle(double base, double height, std::string name, std::string description) :
     Shape{name, description}, base{base}, height{height} {
 
     ID = numShapesCreated;

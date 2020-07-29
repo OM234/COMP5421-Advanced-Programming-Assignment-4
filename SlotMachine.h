@@ -23,11 +23,12 @@ private:
     int getBet();
     void exitMessage();
     void printBottomShapeTypes() const;
-    void displayWinnings();
+    void displayWinnings(int);
     bool check3xBet();
     bool check2xBet();
     bool check1xBet();
     bool check0xBet();
+
 public:
 
     SlotMachine() = default;

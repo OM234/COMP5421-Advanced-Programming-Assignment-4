@@ -12,7 +12,7 @@ private:
 
 public:
 
-    Rhombus(size_t, std::string = "Diamond", std::string = "Parallelogram with equal sides");
+    Rhombus(std::size_t , std::string = "Diamond", std::string = "Parallelogram with equal sides");
     std::string toString() const override;
     double getArea() const override;
     double getPerimeter() const override;
