@@ -20,7 +20,7 @@ void task2();
 int main() {
 
     //task1();        //run task 1
-    task2();        //run task 2
+    //task2();        //run task 2
 }
 
 
